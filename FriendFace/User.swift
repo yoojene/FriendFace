@@ -5,7 +5,9 @@
 //  Created by Eugene on 04/09/2023.
 //
 
-struct User: Codable, Identifiable, Equatable {
+import SwiftUI
+
+struct User: Codable, Identifiable {
     
     let id: String
     let isActive: Bool
@@ -15,7 +17,11 @@ struct User: Codable, Identifiable, Equatable {
     let email: String
     let address: String
     let about: String
-    let registered: String
+    let registered: Date
+    let friends: Array<Friend>
     
+    var formattedRegistedDate: String {
+        registered.formatted(date: .long, time: .omitted)
+    }
     
 }

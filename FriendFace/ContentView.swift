@@ -28,6 +28,7 @@ struct ContentView: View {
                             } else {
                                 Image(systemName: "person.fill.xmark")
                             }
+                        
                         }
                         
                     }
@@ -55,7 +56,9 @@ struct ContentView: View {
             let (data, _) = try await URLSession.shared.data(from: url)
             
             // handle it
-            let decodedUsers = try JSONDecoder().decode(Array<User>.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let decodedUsers = try decoder.decode(Array<User>.self, from: data)
             
             if users.isEmpty {
                 users = decodedUsers
