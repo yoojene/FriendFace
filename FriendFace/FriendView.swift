@@ -19,6 +19,10 @@ struct FriendView: View {
             .navigationTitle("Friends")
             
         }
+        .scrollContentBackground(.hidden)
+        .background(
+            LinearGradient(colors: [Color.red, Color.yellow], startPoint: .top, endPoint: .bottom)
+        )
         
     }
 }

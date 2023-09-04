@@ -15,27 +15,34 @@ struct ContentView: View {
         
     var body: some View {
         NavigationView {
-            List  {
-                ForEach(users) { user in
-                    NavigationLink {
-                        UserDetailView(user: user)
-                    } label: {
-                        HStack (alignment: .center) {
-                            Text(user.name)
-                            Spacer()
-                            if user.isActive {
-                                Image(systemName: "person.fill").padding(.trailing, 7)
-                            } else {
-                                Image(systemName: "person.fill.xmark")
+                List  {
+                    ForEach(users) { user in
+                        NavigationLink {
+                            UserDetailView(user: user)
+                        } label: {
+                            HStack (alignment: .center) {
+                                Text(user.name)
+                                Spacer()
+                                if user.isActive {
+                                    Image(systemName: "person.fill").padding(.trailing, 7)
+                                } else {
+                                    Image(systemName: "person.fill.xmark").foregroundColor(.red)
+                                }
+                            
                             }
-                        
+                            .listRowBackground(Color.red)
+                            
                         }
-                        
                     }
-                }
 
-            }
-            .navigationTitle("Friend Face")
+                }
+         
+                .scrollContentBackground(.hidden)
+                .background(
+                    LinearGradient(colors: [Color.red, Color.yellow], startPoint: .top, endPoint: .bottom)
+                )
+                .navigationTitle("FriendFace")
+    
                 
         }.onAppear {
             Task {

@@ -7,30 +7,40 @@
 
 import SwiftUI
 
+
+
 struct UserDetailView: View {
     
     var user: User
     
     var body: some View {
         ScrollView {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 0) {
                 Section {
                     Text("Bio")
                         .font(.title.bold())
                     Text(user.about)
-                        .font(.headline)
+                        .textCardStyle()
+                        
                     Text("Email")
                         .font(.title2.bold())
                     Text(user.email)
+                        .textCardStyle()
+                    
                     Text("Date Registered")
                         .font(.title2.bold())
                     Text(user.formattedRegistedDate)
+                        .textCardStyle()
+                    
                     Text("Company")
                         .font(.title2.bold())
                     Text(user.company)
+                        .textCardStyle()
+                    
                     Text("Address")
                         .font(.title2.bold())
                     Text(user.address)
+                        .textCardStyle()
                 }
                 .padding()
                 
@@ -43,6 +53,15 @@ struct UserDetailView: View {
                             Image(systemName: "person.3.sequence.fill")
                             Text("Friends")
                         }
+                        .toolbar {
+                            ToolbarItem(placement: .principal) {
+                                HStack {
+                                    Text(user.name)
+                                    Image(systemName: user.isActive ? "person.fill" : "person.fill.xmark")
+                                }
+                                
+                            }
+                        }
                         .padding()
                         
                     }
@@ -54,6 +73,9 @@ struct UserDetailView: View {
         }
         .navigationTitle(user.name)
         .navigationBarTitleDisplayMode(.inline)
+        .background(
+            LinearGradient(colors: [Color.red, Color.orange], startPoint: .top, endPoint: .bottom)
+        )
     }
 }
 
