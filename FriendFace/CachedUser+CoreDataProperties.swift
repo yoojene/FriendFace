@@ -23,6 +23,7 @@ extension CachedUser {
     @NSManaged public var company: String?
     @NSManaged public var email: String?
     @NSManaged public var about: String?
+    @NSManaged public var address: String?
     @NSManaged public var registered: Date?
     @NSManaged public var friend: [CachedFriend]?
     
@@ -45,6 +46,9 @@ extension CachedUser {
     public var wrappedAbout: String {
         about ?? "Unknown about"
     }
+    public var wrappedAddress: String {
+        address ?? "Unknown address"
+    }
     
     public var wrappedRegistered: Date {
         registered ?? Date.now
@@ -55,6 +59,10 @@ extension CachedUser {
             return [] as [CachedFriend]
         }
         return friend
+    }
+    
+    public var formattedRegisteredDate: String {
+        wrappedRegistered.formatted(date: .long, time: .omitted)
     }
 
 

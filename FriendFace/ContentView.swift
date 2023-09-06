@@ -22,7 +22,7 @@ struct ContentView: View {
                 List  {
                     ForEach(users) { user in
                         NavigationLink {
-//                            UserDetailView(user: user)
+                            UserDetailView(user: user)
                         } label: {
                             HStack (alignment: .center) {
                                 Text(user.wrappedName)
@@ -81,6 +81,7 @@ struct ContentView: View {
                     cachedUser.company = user.company
                     cachedUser.email = user.email
                     cachedUser.about = user.about
+                    cachedUser.address = user.address
                     cachedUser.registered = user.registered
                     
                 }
