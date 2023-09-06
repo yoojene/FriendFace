@@ -23,9 +23,6 @@ struct FriendView: View {
         .background(
             LinearGradient(colors: [Color.red, Color.yellow], startPoint: .top, endPoint: .bottom)
         )
-        .onAppear {
-            print(friends)
-        }
         
     }
 }

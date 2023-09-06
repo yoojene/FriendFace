@@ -66,12 +66,8 @@ struct UserDetailView: View {
                         
                     }
                 }
-            }.onAppear {
-                print(user)
             }
-            
-            
-            
+        
         }
         .navigationTitle(user.wrappedName)
         .navigationBarTitleDisplayMode(.inline)

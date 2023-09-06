@@ -54,6 +54,7 @@ struct ContentView: View {
     }
     
     
+    
     func getUsers() async {
         
         let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json")!
@@ -69,32 +70,32 @@ struct ContentView: View {
             decoder.dateDecodingStrategy = .iso8601
             let decodedUsers = try decoder.decode(Array<User>.self, from: data)
             
-            
-            
-            if users.isEmpty {
-                for user in decodedUsers {
-                    let cachedUser = CachedUser(context: moc)
-                    cachedUser.id = user.id
-                    cachedUser.name = user.name
-                    cachedUser.isActive = user.isActive
-                    cachedUser.age = user.age
-                    cachedUser.company = user.company
-                    cachedUser.email = user.email
-                    cachedUser.about = user.about
-                    cachedUser.address = user.address
-                    cachedUser.registered = user.registered
-                    
-                    for friend in user.friends {
-                        let cachedFriend = CachedFriend(context: moc)
-                        cachedFriend.id = friend.id
-                        cachedFriend.name = friend.name
-                        cachedFriend.user = cachedUser   
+            await MainActor.run {
+                if users.isEmpty {
+                    for user in decodedUsers {
+                        let cachedUser = CachedUser(context: moc)
+                        cachedUser.id = user.id
+                        cachedUser.name = user.name
+                        cachedUser.isActive = user.isActive
+                        cachedUser.age = user.age
+                        cachedUser.company = user.company
+                        cachedUser.email = user.email
+                        cachedUser.about = user.about
+                        cachedUser.address = user.address
+                        cachedUser.registered = user.registered
+                        
+                        for friend in user.friends {
+                            let cachedFriend = CachedFriend(context: moc)
+                            cachedFriend.id = friend.id
+                            cachedFriend.name = friend.name
+                            cachedFriend.user = cachedUser
+                            
+                        }
+                        
                         
                     }
-                    
-                    
+                    try? moc.save()
                 }
-                try? moc.save()
             }
         
           } catch {
