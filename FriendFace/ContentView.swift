@@ -10,6 +10,7 @@ import SwiftUI
     
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) var moc
     @State private var users: [User] = []
     
         
@@ -68,11 +69,21 @@ struct ContentView: View {
             let decodedUsers = try decoder.decode(Array<User>.self, from: data)
             
             if users.isEmpty {
-                users = decodedUsers
-
+                for user in decodedUsers {
+                    let cachedUser = CachedUser(context: moc)
+                    cachedUser.id = user.id
+                    cachedUser.name = user.name
+                    cachedUser.isActive = user.isActive
+                    cachedUser.age = user.age
+                    cachedUser.company = user.company
+                    cachedUser.email = user.email
+                    cachedUser.about = user.about
+                    cachedUser.registered = user.registered
+                    
+                }
+                try? moc.save()
             }
-    
-
+        
           } catch {
             print(error)
             print("There was a error downloading")

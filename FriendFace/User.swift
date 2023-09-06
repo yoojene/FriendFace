@@ -12,7 +12,7 @@ struct User: Codable, Identifiable {
     let id: String
     let isActive: Bool
     let name: String
-    let age: Int
+    let age: Int16
     let company: String
     let email: String
     let address: String
