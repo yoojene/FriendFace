@@ -11,7 +11,10 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @State private var users: [User] = []
+//    @State private var users: [User] = []
+    
+    @FetchRequest(sortDescriptors: []) var users: FetchedResults<CachedUser>
+    
     
         
     var body: some View {
@@ -19,10 +22,10 @@ struct ContentView: View {
                 List  {
                     ForEach(users) { user in
                         NavigationLink {
-                            UserDetailView(user: user)
+//                            UserDetailView(user: user)
                         } label: {
                             HStack (alignment: .center) {
-                                Text(user.name)
+                                Text(user.wrappedName)
                                 Spacer()
                                 if user.isActive {
                                     Image(systemName: "person.fill").padding(.trailing, 7)
@@ -97,5 +100,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        
     }
 }
