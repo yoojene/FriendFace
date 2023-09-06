@@ -11,10 +11,8 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) var moc
-//    @State private var users: [User] = []
     
     @FetchRequest(sortDescriptors: []) var users: FetchedResults<CachedUser>
-    
     
         
     var body: some View {
@@ -91,8 +89,6 @@ struct ContentView: View {
                         cachedFriend.id = friend.id
                         cachedFriend.name = friend.name
                         cachedFriend.user = cachedUser   
-                        
-                    
                         
                     }
                     

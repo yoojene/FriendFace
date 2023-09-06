@@ -13,10 +13,6 @@ struct UserDetailView: View {
     
     var user: CachedUser
     
-//    @FetchRequest(sortDescriptors: []) var users: FetchedResults<CachedUser>
-    
-    
-    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading, spacing: 0) {

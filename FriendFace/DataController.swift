@@ -17,8 +17,7 @@ class DataController: ObservableObject {
                 print("FriendFace failed to load: \(error.localizedDescription)")
                 return
             }
-            
-
+        
         }
     }
 }
