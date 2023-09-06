@@ -20,7 +20,7 @@ struct User: Codable, Identifiable {
     let registered: Date
     let friends: Array<Friend>
     
-    var formattedRegistedDate: String {
+    var formattedRegisteredDate: String {
         registered.formatted(date: .long, time: .omitted)
     }
     

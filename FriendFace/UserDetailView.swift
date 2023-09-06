@@ -29,7 +29,7 @@ struct UserDetailView: View {
                     
                     Text("Date Registered")
                         .font(.title2.bold())
-                    Text(user.formattedRegistedDate)
+                    Text(user.formattedRegisteredDate)
                         .textCardStyle()
                     
                     Text("Company")
