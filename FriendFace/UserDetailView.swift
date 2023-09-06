@@ -50,7 +50,7 @@ struct UserDetailView: View {
                 
                 Section {
                     NavigationLink {
-//                        FriendView(friends: user.friends)
+                        FriendView(friends: user.friendArray)
                         
                     } label : {
                         HStack {
@@ -70,6 +70,8 @@ struct UserDetailView: View {
                         
                     }
                 }
+            }.onAppear {
+                print(user)
             }
             
             

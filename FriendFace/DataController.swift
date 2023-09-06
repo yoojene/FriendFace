@@ -18,7 +18,7 @@ class DataController: ObservableObject {
                 return
             }
             
-            self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
         }
     }
 }

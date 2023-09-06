@@ -25,7 +25,7 @@ extension CachedUser {
     @NSManaged public var about: String?
     @NSManaged public var address: String?
     @NSManaged public var registered: Date?
-    @NSManaged public var friend: [CachedFriend]?
+    @NSManaged public var friends: NSSet?
     
     public var wrappedId: String {
         id ?? "Unknown Id"
@@ -55,10 +55,15 @@ extension CachedUser {
     }
     
     public var friendArray: [CachedFriend] {
-        guard let friend else {
-            return [] as [CachedFriend]
+        
+        
+        let set = friends as? Set<CachedFriend> ?? []
+        
+        return set.sorted {
+            $0.wrappedName < $1.wrappedName
+
         }
-        return friend
+    
     }
     
     public var formattedRegisteredDate: String {

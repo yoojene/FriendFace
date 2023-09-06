@@ -71,6 +71,8 @@ struct ContentView: View {
             decoder.dateDecodingStrategy = .iso8601
             let decodedUsers = try decoder.decode(Array<User>.self, from: data)
             
+            
+            
             if users.isEmpty {
                 for user in decodedUsers {
                     let cachedUser = CachedUser(context: moc)
@@ -83,6 +85,17 @@ struct ContentView: View {
                     cachedUser.about = user.about
                     cachedUser.address = user.address
                     cachedUser.registered = user.registered
+                    
+                    for friend in user.friends {
+                        let cachedFriend = CachedFriend(context: moc)
+                        cachedFriend.id = friend.id
+                        cachedFriend.name = friend.name
+                        cachedFriend.user = cachedUser   
+                        
+                    
+                        
+                    }
+                    
                     
                 }
                 try? moc.save()
